@@ -22,9 +22,15 @@ title: "Sam's Blog"
 
 # Build settings
 theme: minima
+author: "Sam Anklesaria"
+github_username: bogiebro
+url: "http://bogiebro.github.io"
+tagline: ""
+description: "Sam's tech blog. Math, code, models, and poetry."
 
 plugins:
     - jekyll-sitemap
+    - jekyll-feed
 
 # Exclude from processing.
 # The following items will not be processed, by default.
