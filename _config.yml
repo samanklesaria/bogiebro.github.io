@@ -23,7 +23,6 @@ title: "Sam's Blog"
 # Build settings
 theme: minima
 author: "Sam Anklesaria"
-github_username: bogiebro
 url: "http://bogiebro.github.io"
 tagline: ""
 description: "Sam's personal blog. Math, code, politics, and anything else I feel like writing about."
