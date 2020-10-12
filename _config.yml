@@ -26,7 +26,7 @@ author: "Sam Anklesaria"
 github_username: bogiebro
 url: "http://bogiebro.github.io"
 tagline: ""
-description: "Sam's tech blog. Math, code, models, and poetry."
+description: "Sam's personal blog. Math, code, politics, and anything else I feel like writing about."
 
 plugins:
     - jekyll-sitemap
