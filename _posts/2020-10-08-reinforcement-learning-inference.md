@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Reinforcement Learning is MAP Inference
+title: MAP Inference is a Markov Decision Process
 ---
 
 Let's say you have a generative model to explain some observations $x$ in terms of some latent $z$:
@@ -39,8 +39,6 @@ Q^*(z_{i-1},z_i)=R_i + \max_{z_{i+1}}Q^*(z_i, z_{i+1})
 $$
 
 
-Here, $Q^*(z_{i-1}, z_i)$ is the maximum joint log probability possible for $(z_{i:N},x_{i:N})$ given $z_{i-1}$.   $R_i=\log p(x_i, z_i \vert z_{i-1})$.  This is just the Bellman optimality equation for the action-value function in reinforcement learning! MAP inference, from this perspective, is just a Markov decision process. The states are instantiations for previously sampled latent variables $z_i$. The actions are choices for $z_{i+1}$. And the value function $V(z_i)$ for a policy that chooses actions $z_{i+1} \dots z_N$ is the undiscounted sum of the rewards, giving $\log p(x_{i+1:N}, z_{i+1:N} \vert z_i)$. So the inference task of finding $z_{i:N}$ maximizing $\log p(x_{i:N}, z_{i:N} \vert z_{1:i})$ is the same as the reinforcement learning task of finding an optimal policy. 
+Here, $Q^*(z_{i-1}, z_i)$ is the maximum joint log probability possible for $(z_{i:N},x_{i:N})$ given $z_{i-1}$.   $R_i=\log p(x_i, z_i \vert z_{i-1})$.  This is just the Bellman optimality equation for the action-value function in a Markov decision process! The states are instantiations for previously sampled latent variables $z_i$. The actions are choices for $z_{i+1}$. And the value function $V(z_i)$ for a policy that chooses actions $z_{i+1} \dots z_N$ is the undiscounted sum of the rewards, giving $\log p(x_{i+1:N}, z_{i+1:N} \vert z_i)$. So the inference task of finding $z_{i:N}$ maximizing $\log p(x_{i:N}, z_{i:N} \vert z_{1:i})$ is the same as the planning task of finding an optimal policy for an MDP. In particular, approximate planning techniques (reinforcement learning) can be interpreted as approximate inference techniques. 
 
-
-
-This means that all the tools we have for doing approximate MAP inference can be re-purposed for reinforcement learning. It also means that all the tools we have for doing reinforcement learning can be brought to bear on inference problems. I'll explore some examples of this in future posts. 
+This means that all the tools we have for doing reinforcement learning can be brought to bear on inference problems. It also means that many of the tools we have for doing approximate MAP inference can be re-purposed for reinforcement learning. I'll explore some examples of this in future posts. 
