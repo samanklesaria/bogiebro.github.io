@@ -30,3 +30,5 @@ $$
 $$
 
    This justifies the ELBO's name (the **e**vidence **l**ower **bo**und). 
+
+Why, you may ask, do we move the log into the expectation with Jenson's inequality? Why not just stop with the importance sampling estimate, rather than taking a lower bound? Well, that's what the [Importance Weighted Autoencoder](https://arxiv.org/pdf/1509.00519.pdf) does! 
