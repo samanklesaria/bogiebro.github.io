@@ -25,7 +25,7 @@ theme: minima
 author: "Sam Anklesaria"
 url: "http://bogiebro.github.io"
 tagline: ""
-description: "Sam's personal blog. Math, code, politics, and anything else I feel like writing about."
+description: "Sam's personal blog. Math, code, philosophy, and anything else I feel like writing about."
 google_analytics: UA-180342616-1
 
 plugins:
