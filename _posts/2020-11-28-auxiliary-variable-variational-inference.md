@@ -4,7 +4,9 @@ layout: post
 
 Let's say you're doing some variational inference. You want to find an approximation for $p(z\vert x)$. Conventionally,  you'd have a variational family $q(z\vert x)$. But let's say it's easier to define your posterior approximation by first sampling an auxiliary variable $\theta$, and then sampling $q(z\vert \theta, x)$, producing a sample from the joint distribution $q(\theta, z\vert  x)$. How do you use this joint distribution in variational inference?
 
-You could just take a Monte Carlo estimate. Sample $k$ different $\theta$. $q(z \vert  x) \approx \sum_{k=1}^K q(\theta_k, z \vert  x) / q(\theta_k)$. That's the approach taken [here](https://arxiv.org/pdf/1801.03612.pdf). But if you have an idea how to estimate $\theta$ from $z$ and $x$, there's a lower-variance way to do it.
+You could just take a Monte Carlo estimate. $q(z\vert x) = E_\theta q(z \vert x,\theta) = E_\theta q(z, \theta \vert x)/q(\theta)$.
+
+Sample $k$ different $\theta$. $q(z \vert  x) \approx \frac{1}{N}\sum_{k=1}^K q(\theta_k, z \vert  x) / q(\theta_k)$. That's the approach taken [here](https://arxiv.org/pdf/1801.03612.pdf). But if you have an idea how to estimate $\theta$ from $z$ and $x$, there's a lower-variance way to do it.
 
 Instead of trying to marginalize out the $\theta$ from $q$, let's expand our model to work on the joint space. Pick another variational family $g(\theta \vert  x, z)$. Assume the true joint posterior for $z$ and $\theta$ is given by $p(z\vert x)g(\theta \vert  x, z)$. As usual, variational inference tries to minimize the KL divergence between this true posterior and our approximation $q(\theta, z \vert  x)$. That's
 $$
