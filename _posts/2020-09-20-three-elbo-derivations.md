@@ -30,19 +30,29 @@ Generative models make it easy to find $p(x\vert z)$, where $x$ is an observatio
 
 2. Choose $q_\phi(z)$ as the proposal distribution maximizing the importance sampled estimate of the evidence $p(x)$. We maximize the log of this value:
 
-$$
-\begin{align*}
-\log p(x) &= \sum_i^k \log p(x_i) = kE_{\hat{p}}\log p(x)\\
-&= kE_{\hat{p}} \log E_{z \sim p(z)} p(x|z) \\
-&=kE_{\hat{p}} \log E_{z \sim q} \frac{p(x|z) p(z)}{q(z)} &\text{ (importance sampling)}\\
-& \geq kE_{\hat{p}} E_{z \sim q} \log \frac{p(x|z) p(z)}{q(z)} &\text{ (Jenson's inequality)} \\
-&= kE_{\hat{p}} ELBO
-\end{align*}
-$$
+   $$
+   \begin{align*}
+   \log p(x) &= \sum_i^k \log p(x_i) = kE_{\hat{p}}\log p(x)\\
+   &= kE_{\hat{p}} \log E_{z \sim p(z)} p(x|z) \\
+   &=kE_{\hat{p}} \log E_{z \sim q} \frac{p(x|z) p(z)}{q(z)} &\text{ (importance sampling)}\\
+   & \geq kE_{\hat{p}} E_{z \sim q} \log \frac{p(x|z) p(z)}{q(z)} &\text{ (Jensen's inequality)} \\
+   &= kE_{\hat{p}} \text{ELBO}
+   \end{align*}
+   $$
 
    This justifies the ELBO's name (the **e**vidence **l**ower **bo**und). 
+​   You can make a slight modification to this derivation:
 
-   Why, you may ask, do we apply Jenson's inequality? Why not just stop with the importance sampling estimate? Well, that's what the [Importance Weighted Autoencoder](https://arxiv.org/pdf/1509.00519.pdf) does! . 
+   $$
+   \begin{align*}
+   &=kE_{\hat{p}} \log E_{z \sim q} \frac{p(x \vert z) p(z)}{q(z)} &\text{ (importance sampling)}\\
+   &=kE_{\hat{p}} \log E_{z_{1:k} \sim q} \frac{1}{k}\sum_{i=1}^k\frac{p(x \vert z_i) p(z_i)}{q(z_i)} \\
+   &\geq kE_{\hat{p}} E_{z_{1:k} \sim q} \log \frac{1}{k}\sum_{i=1}^k\frac{p(x \vert z_i) p(z_i)}{q(z_i)} &\text{ (Jensen's inequality)} \\
+   &= kE_{\hat{p}} \text{ELBO}_{IS}
+   \end{align*}
+   $$
+
+   This is what the [Importance Weighted Autoencoder](https://arxiv.org/pdf/1509.00519.pdf) does. 
 
 3. Let $q$ approximate the joint instead of the posterior, and choose $\phi$ to maximize $-KL[q_\phi(z,x) \vert \vert p(z,x)]$. 
 
